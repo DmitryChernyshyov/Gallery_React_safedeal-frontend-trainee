@@ -1,0 +1,43 @@
+.form {
+    display: flex;
+    flex-direction: column;
+}
+input {
+    margin-bottom: 20px;
+    height: 40px;
+    width: 600px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+}
+.btn {
+    background-color: #4997D0;
+    cursor: pointer;
+    color: #fff;
+}
+@media (max-width: 480px) {
+    input {
+        width: 100% !important;
+    }
+    .form {
+        text-align: center;
+        width: 100%;
+    }
+}
+@media (max-width: 780px) {
+    input {
+        width: 100% !important;
+    }
+    .form {
+        text-align: center;
+        width: 100%;
+    }
+}
+@media (max-width: 1280px) {
+    input {
+        width: 400px;
+    }
+    .form {
+        text-align: center;
+        width: 100%;
+    }
+  }

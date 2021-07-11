@@ -1,0 +1,11 @@
+.gallery-wraper{
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    margin: auto;
+    justify-content: center;
+
+  }
+  .gallery-wraper img {
+    margin: 10px;
+  }

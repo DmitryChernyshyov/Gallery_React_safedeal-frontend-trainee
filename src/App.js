@@ -1,24 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
-
+import React, { useState } from 'react';
+import Gallery from './components/gallery/gallery'
+import Modal from './components/modal/modal'
 function App() {
+  const [images, setimages] = useState([])
+  const [modalimg, setmodalimg] = useState("")
+  const [showmodal, setshowmodal] = useState(false)
+  const [loading, setloading] = useState(false)
+  const featchimages = () =>{
+    fetch('https://boiling-refuge-66454.herokuapp.com/images').then(
+      (res)=> res.json()
+    )
+    .then(
+      (json)=> setimages(json)
+    )
+  }
+  React.useEffect(() => {
+    featchimages();
+  }, [])
+  const featchimagebyid = id =>{
+    setloading(true)
+    fetch(`https://boiling-refuge-66454.herokuapp.com/images/${id}`).then(
+      res => res.json()
+    ).then(
+      (res)=>{setmodalimg(res);      
+        setloading(false)
+      }
+    )
+  }
+  const handleimgclick = id =>{
+    featchimagebyid(id);
+    setshowmodal(true)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>Gallery</h1>  
       </header>
-    </div>
+      <Gallery  images={images} handleimgclick={handleimgclick}/>
+      <Modal showmodal={showmodal} setshowmodal={setshowmodal} loading={loading} modalimg={modalimg}/>
+    </div>  
   );
 }
 
