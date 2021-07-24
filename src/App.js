@@ -7,6 +7,7 @@ function App() {
   const [modalimg, setmodalimg] = useState("")
   const [showmodal, setshowmodal] = useState(false)
   const [loading, setloading] = useState(false)
+  // загрузка всех картинок
   const featchimages = () =>{
     fetch('https://boiling-refuge-66454.herokuapp.com/images').then(
       (res)=> res.json()
@@ -18,6 +19,7 @@ function App() {
   React.useEffect(() => {
     featchimages();
   }, [])
+  // загрузка большой каритинки по клику
   const featchimagebyid = id =>{
     setloading(true)
     fetch(`https://boiling-refuge-66454.herokuapp.com/images/${id}`).then(
@@ -28,6 +30,7 @@ function App() {
       }
     )
   }
+  // открытие модального окна с большой картинкой 
   const handleimgclick = id =>{
     featchimagebyid(id);
     setshowmodal(true)
